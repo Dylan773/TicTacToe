@@ -27,3 +27,7 @@
     -fx-vgap: 20;
     -fx-alignment: center;
 }
+
+.GameWinner {
+    -fx-background-color: green;
+}
