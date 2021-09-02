@@ -89,14 +89,10 @@ public class MainMenu extends BorderPane {
      * @return The button.
      */
     public static Button addButton(Button button, double width, double height) {
-        button.setMinSize(width, height); // Default Height == 30
+        button.setMinSize(width, height);
         GridPane.setHalignment(button, HPos.CENTER);
 
         return button;
-    }
-
-    public void attachEventHandlers() {
-
     }
 
     /**
@@ -106,7 +102,6 @@ public class MainMenu extends BorderPane {
     public void addPlayGameHandler(EventHandler<ActionEvent> handler) {
         playGame.setOnAction(handler);
     }
-
 
     /**
      *
