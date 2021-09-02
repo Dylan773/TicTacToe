@@ -17,7 +17,7 @@ public class MainMenu extends BorderPane {
 
     // Fields
     private Label title, credits;
-    private Button playGame, twoPlayer, gameInfo, exitGame;
+    private Button playGame, gameInfo, exitGame;
 
     // Constructor
     /**
@@ -57,9 +57,12 @@ public class MainMenu extends BorderPane {
 
         // Initialising the Main Menu Buttons
         playGame = new Button("Play Game");
+
         //twoPlayer = new Button("Two Player");
         gameInfo = new Button("Info");
+
         exitGame = new Button("Exit Game");
+        exitGame.setOnAction(e -> System.exit(0));
 
         // HBox controls for Game Info and Exit
         HBox appControls = new HBox(20, addButton(gameInfo, 140, 30), addButton(exitGame, 140, 30));
@@ -90,6 +93,10 @@ public class MainMenu extends BorderPane {
         GridPane.setHalignment(button, HPos.CENTER);
 
         return button;
+    }
+
+    public void attachEventHandlers() {
+
     }
 
     /**
