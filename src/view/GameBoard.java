@@ -10,7 +10,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Collection;
-
 import static view.MainMenu.addButton;
 
 /**
@@ -28,7 +27,7 @@ public class GameBoard extends BorderPane {
     private Label gameInfo;
     private ArrayList<Button> gameButtons;
 
-// TODO - RESET THE GRID EVERY TIME PLAY GAME IS PRESSED ON THE MAIN MENU
+
     // Constructor
     /**
      *
@@ -59,8 +58,9 @@ public class GameBoard extends BorderPane {
 
     // Methods
     /**
+     * Adds all TicTacToe game buttons to a collection, allows easy iteration of all buttons.
      *
-     * @return
+     * @return An ArrayList of all TicTacToe game buttons.
      */
     public Collection<Button> getAllButtons() {
         gameButtons = new ArrayList<>();
@@ -80,7 +80,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
-     * Private Method, only necessary for this class.
+     * Creates a 3x3 grid of buttons for the TicTacToe game board.
      *
      * @return GameBoard GridPane.
      */
@@ -121,9 +121,9 @@ public class GameBoard extends BorderPane {
     }
 
     /**
-     * Keep in this class
+     * Method that updates the Labels text displayed at the top of the game screen BorderPane.
      *
-     * @param text
+     * @param text The text to be displayed within the label.
      */
     public void setGameInfo(String text) {
         gameInfo.setText(text);
@@ -132,71 +132,70 @@ public class GameBoard extends BorderPane {
     /* Although this Class's children could inherit the button properties if they were 'protected' not 'private'
      having the children being able to directly modify the buttons properties is not suitable. */
     /**
-     * @return The top left button text value.
+     * @return The top left button String value.
      */
     public String getTopLeftText() {
         return topLeft.getText();
     }
 
     /**
-     * @return The top centre button text value.
+     * @return The top centre button String value.
      */
     public String getTopCentreText() {
         return topCentre.getText();
     }
 
     /**
-     * @return The top right button text value.
+     * @return The top right button String value.
      */
     public String getTopRightText() {
         return topRight.getText();
     }
 
     /**
-     * @return The middle left button text value.
+     * @return The middle left button String value.
      */
     public String getMiddleLeftText() {
         return middleLeft.getText();
     }
 
     /**
-     * @return The middle centre button text value.
+     * @return The middle centre button String value.
      */
     public String getMiddleCentreText() {
         return middleCentre.getText();
     }
 
     /**
-     * @return The middle right button text value.
+     * @return The middle right button String value.
      */
     public String getMiddleRightText() {
         return middleRight.getText();
     }
 
     /**
-     * @return The bottom left button text value.
+     * @return The bottom left button String value.
      */
     public String getBottomLeftText() {
         return bottomLeft.getText();
     }
 
     /**
-     * @return The bottom centre button text value.
+     * @return The bottom centre button String value.
      */
     public String getBottomCentreText() {
         return bottomCentre.getText();
     }
 
     /**
-     * @return The bottom right button text value.
+     * @return The bottom right button String value.
      */
     public String getBottomRightText() {
         return bottomRight.getText();
     }
 
 
-    // Event Handlers - INFO HERE
-
+    // Event Handlers - Allows external Event Handlers to be attached to the buttons in this game board.
     public void topLeftHandler(EventHandler<ActionEvent> handler) {
         topLeft.setOnAction(handler);
     }
@@ -237,10 +236,6 @@ public class GameBoard extends BorderPane {
         resetGame.setOnAction(handler);
     }
 
-    /**
-     *
-     * @param handler
-     */
     public void addMainMenuHandler(EventHandler<ActionEvent> handler) {
         mainMenu.setOnAction(handler);
     }
