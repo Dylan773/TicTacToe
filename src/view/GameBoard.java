@@ -10,10 +10,15 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import static view.MainMenu.addButton;
 
 /**
  * <h1>TicTacToe Game Board</h1>
+ *
+ * Creates a Game Screen for this TicTacToe application. The GameBoard consists of 3x3 of JavaFX Buttons that enables
+ * the user to interact with and play TicTacToe. Alongside a game info label that prompts the user with game instructions
+ * and two further buttons that can be enabled to reset the TicTacToe grid or return to the Main Menu. <p></p>
  *
  * @author Dylan Brand
  */
@@ -26,13 +31,23 @@ public class GameBoard extends BorderPane {
             resetGame, mainMenu;
     private Label gameInfo;
     private ArrayList<Button> gameButtons;
+    private HashMap<String, Button> button;
+
 
 
     // Constructor
     /**
+     * <h2>This class' constructor</h2>
      *
+     * Creates the layout for this GameBoard screen by assigning different nodes to locations in a BorderPane.
+     * <p>
+     *
+     * Initialises the game info Label that prompts the user with game instructions to the top of the BorderPane. <br>
+     * Calls the createGrid method to the centre of the BorderPane: @see {@link #createGrid()}. <br>
+     * Assigning a game controls HBox to the bottom of the BorderPane.
      */
     public GameBoard() {
+        // External CSS Styling
         this.getStyleClass().add("GameBoard");
 
         // Initialising Game Info Label
@@ -58,29 +73,7 @@ public class GameBoard extends BorderPane {
 
     // Methods
     /**
-     * Adds all TicTacToe game buttons to a collection, allows easy iteration of all buttons.
-     *
-     * @return An ArrayList of all TicTacToe game buttons.
-     */
-    public Collection<Button> getAllButtons() {
-        gameButtons = new ArrayList<>();
-        gameButtons.add(topLeft);
-        gameButtons.add(topCentre);
-        gameButtons.add(topRight);
-
-        gameButtons.add(middleLeft);
-        gameButtons.add(middleCentre);
-        gameButtons.add(middleRight);
-
-        gameButtons.add(bottomLeft);
-        gameButtons.add(bottomCentre);
-        gameButtons.add(bottomRight);
-
-        return gameButtons;
-    }
-
-    /**
-     * Creates a 3x3 grid of buttons for the TicTacToe game board.
+     * Creates a 3x3 grid of buttons for the TicTacToe game board.<P></P>
      *
      * @return GameBoard GridPane.
      */
@@ -121,6 +114,107 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Disables all Tic Tac Toe game buttons on the GameBoard. <p></p>
+     *
+     * Calls getAllButtons from the inherited class and uses this method to iterate through all TicTacToe game buttons. @see {@link #getAllButtons()}
+     */
+    public void disableButtons() {
+        for (Button button : getAllButtons())
+            button.setDisable(true);
+    }
+
+    /**
+     * Adds all TicTacToe game buttons to a collection, allows easy iteration of all buttons.
+     *
+     * @return An ArrayList of all TicTacToe game buttons.
+     */
+    public Collection<Button> getAllButtons() {
+        gameButtons = new ArrayList<>();
+        gameButtons.add(topLeft);
+        gameButtons.add(topCentre);
+        gameButtons.add(topRight);
+
+        gameButtons.add(middleLeft);
+        gameButtons.add(middleCentre);
+        gameButtons.add(middleRight);
+
+        gameButtons.add(bottomLeft);
+        gameButtons.add(bottomCentre);
+        gameButtons.add(bottomRight);
+
+        return gameButtons;
+    }
+
+    public void defaultButtons() {
+        for (Button button : getAllButtons()) {
+            button.setDisable(false);
+            button.setText("");
+
+            // Reset the button's CSS styling to their original state
+            button.getStyleClass().clear();
+            button.getStyleClass().add("button");
+        }
+    }
+
+    /*
+     * Although there are cleaner implementations to change the button colours. Giving the extending class' direct
+     * access to the game buttons, allowing them to directly change the buttons state is considered bad practice.
+     *
+     * These methods can be called to change the game winning button's colours without providing direct access to
+     * modify there state.
+     */
+    /**
+     * Highlights the three top row buttons green.
+     */
+    public void topRowWin(Boolean gameOver) {
+        if (gameOver) {
+            topLeft.getStyleClass().add("GameWinner");
+            topCentre.getStyleClass().add("GameWinner");
+            topRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    public void middleRowWin(Boolean gameOver) {
+        if (gameOver) {
+            middleLeft.getStyleClass().add("GameWinner");
+            middleCentre.getStyleClass().add("GameWinner");
+            middleRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    public void bottomRowWin(Boolean gameOver) {
+        if (gameOver) {
+            bottomLeft.getStyleClass().add("GameWinner");
+            bottomCentre.getStyleClass().add("GameWinner");
+            bottomRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    public void leftColumnWin(Boolean gameOver) {
+        if (gameOver) {
+            topLeft.getStyleClass().add("GameWinner");
+            middleLeft.getStyleClass().add("GameWinner");
+            middleRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    public void middleColumnWin(Boolean gameOver) {
+        if (gameOver) {
+            topLeft.getStyleClass().add("GameWinner");
+            topCentre.getStyleClass().add("GameWinner");
+            topRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    public void rightColumnWin(Boolean gameOver) {
+        if (gameOver) {
+            topLeft.getStyleClass().add("GameWinner");
+            topCentre.getStyleClass().add("GameWinner");
+            topRight.getStyleClass().add("GameWinner");
+        }
+    }
+
+    /**
      * Method that updates the Labels text displayed at the top of the game screen BorderPane.
      *
      * @param text The text to be displayed within the label.
@@ -132,6 +226,7 @@ public class GameBoard extends BorderPane {
     /* Although this Class's children could inherit the button properties if they were 'protected' not 'private'
      having the children being able to directly modify the buttons properties is not suitable. */
     /**
+     * Allows the top left TicTacToe button text value to be obtained and compared for equality.
      * @return The top left button String value.
      */
     public String getTopLeftText() {
@@ -139,6 +234,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the top centre TicTacToe button text value to be obtained and compared for equality.
      * @return The top centre button String value.
      */
     public String getTopCentreText() {
@@ -146,6 +242,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the top right TicTacToe button text value to be obtained and compared for equality.
      * @return The top right button String value.
      */
     public String getTopRightText() {
@@ -153,6 +250,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the middle left TicTacToe button text value to be obtained and compared for equality.
      * @return The middle left button String value.
      */
     public String getMiddleLeftText() {
@@ -160,6 +258,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the middle centre TicTacToe button text value to be obtained and compared for equality.
      * @return The middle centre button String value.
      */
     public String getMiddleCentreText() {
@@ -167,6 +266,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the middle right TicTacToe button text value to be obtained and compared for equality.
      * @return The middle right button String value.
      */
     public String getMiddleRightText() {
@@ -174,6 +274,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the bottom left TicTacToe button text value to be obtained and compared for equality.
      * @return The bottom left button String value.
      */
     public String getBottomLeftText() {
@@ -181,6 +282,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the bottom centre TicTacToe button text value to be obtained and compared for equality.
      * @return The bottom centre button String value.
      */
     public String getBottomCentreText() {
@@ -188,6 +290,7 @@ public class GameBoard extends BorderPane {
     }
 
     /**
+     * Allows the bottom right TicTacToe button text value to be obtained and compared for equality.
      * @return The bottom right button String value.
      */
     public String getBottomRightText() {
@@ -240,4 +343,3 @@ public class GameBoard extends BorderPane {
         mainMenu.setOnAction(handler);
     }
 }
-

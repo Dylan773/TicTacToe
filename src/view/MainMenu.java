@@ -12,7 +12,9 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 /**
+ * <h1>Main Menu screen for this application</h1>
  *
+ * @author Dylan Brand.
  */
 public class MainMenu extends BorderPane {
 
@@ -22,7 +24,13 @@ public class MainMenu extends BorderPane {
 
     // Constructor
     /**
+     * <h2>This class' constructor</h2>
      *
+     * Creates the layout for this Main Menu screen by assigning different nodes to locations in a BorderPane.
+     * <p></p>
+     *
+     * Calls the createMenuScreen method to the centre of the BorderPane: @see {@link #createMenuScreen()}
+     * Assigning a credits HBox to the bottom of the BorderPane.
      */
     public MainMenu() {
         // External Style Sheet
@@ -41,9 +49,11 @@ public class MainMenu extends BorderPane {
     }
 
     // Methods
-
     /**
-     * @return
+     * Creates a GridPane consisting of buttons and a Label within a specific order
+     * to display on the Main Menu screen.
+     *
+     * @return Main Menu GridPane.
      */
     public GridPane createMenuScreen() {
 
@@ -62,7 +72,7 @@ public class MainMenu extends BorderPane {
         // Game Info Button
         gameInfo = new Button("Info");
         gameInfo.setOnAction(e -> alertDialogBuilder(Alert.AlertType.INFORMATION, "Information", null,
-                "TicTacToe game designed and created using JavaFX, without the use of any Java framework or GUI builders.\n\n" +
+                "TicTacToe game designed and created using JavaFX, without the use of any Java frameworks or GUI builders.\n\n" +
                         "I am a student, and still learning so it may not be perfect. If any bugs, errors or " +
                         "bad practices are present, please let me know. Feedback is appreciated."));
 
@@ -84,9 +94,11 @@ public class MainMenu extends BorderPane {
 
     /**
      * Add button method that reduces repetition and volume of code.
-     * <p>
-     * Accepts a JavaFX Button and a double argument, setting the default position of the button to the centre and
-     * width and height of the button to the values provided.
+     * <p></p>
+     *
+     * Accepts a JavaFX Button and two double argument's, setting the default position of the button to the centre and
+     * width and height of the button to the two double values provided.
+     * <p></p>
      *
      * @param button The JavaFX button to be instantiated.
      * @param width  The width (length) of the button.
@@ -104,7 +116,8 @@ public class MainMenu extends BorderPane {
     /**
      * Alert Dialog Builder method that can be instantiated to display a variety of
      * different messages to the user based on their actions.
-     * <p>
+     * <p></p>
+     *
      * E.g. If an error in the application occurs, an error dialog box can be
      * displayed alerting the user.
      *
@@ -122,9 +135,10 @@ public class MainMenu extends BorderPane {
     }
 
     // Event Handlers
-
     /**
-     * @param handler
+     * Allows an EventHandler to be externally attached to the play game button on this Menu screen.
+     *
+     * @param handler The EventHandler to be attached to this button.
      */
     public void addPlayGameHandler(EventHandler<ActionEvent> handler) {
         playGame.setOnAction(handler);
