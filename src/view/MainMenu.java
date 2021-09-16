@@ -72,8 +72,9 @@ public class MainMenu extends BorderPane {
         // Game Info Button
         gameInfo = new Button("Info");
         gameInfo.setOnAction(e -> alertDialogBuilder(Alert.AlertType.INFORMATION, "Information", null,
-                "TicTacToe game designed and created using JavaFX, without the use of any Java frameworks or GUI builders.\n\n" +
-                        "I am a student, and still learning so it may not be perfect. If any bugs, errors or " +
+                "TicTacToe game designed and created using JavaFX, without the use of any Java frameworks or GUI builders. " +
+                        "No MVC design pattern was strictly followed, the aim of this game was to improve my general JavaFX skills.\n\n" +
+                        "I am a student, and still learning so it will not be perfect. If any bugs, errors or " +
                         "bad practices are present, please let me know. Feedback is appreciated."));
 
         // Exit Game Button
