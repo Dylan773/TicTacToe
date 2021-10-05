@@ -9,9 +9,8 @@ import view.GameBoard;
 public class TwoPlayerGame extends GameBoard {
 
     // Fields
-    private boolean xTurn;
-    int turnsPlayed;
-
+    private boolean xTurn, gameWon;
+    private int turnsPlayed;
 
     // Constructor
     /**
@@ -48,40 +47,35 @@ public class TwoPlayerGame extends GameBoard {
         bottomRightHandler(buttonEvent());
 
         // RESET GAME
-        resetGameHandler(e -> resetButtons());
+        resetGameHandler(e -> resetGameBoard());
     }
 
-    /**
-     * Disables all Tic Tac Toe game buttons on the GameBoard.
-     */
-    public void disableButtons() {
-        for (Button button : getAllButtons())
-            button.setDisable(true);
-    }
-
+    // TODO - Javadoc
     /**
      * Iterates through all Tic Tac Toe game buttons and resets them to their original state (empty string).
-     * Enables all buttons for play, setting the first turn to player X.
+     * Enables all buttons for play, setting the first turn to player X. <p></p>
+     * <p>
+     * Calls defaultButtons from the inherited class and uses this method to reset all TicTacToe game buttons to there
+     * default state. @see {@link #defaultButtons()}
      */
-    public void resetButtons() {
-        for (Button button : getAllButtons()) {
-            button.setDisable(false);
-            button.setText("");
-        }
-        xTurn = true;
-        turnsPlayed = 0;
+    public void resetGameBoard() {
+        defaultButtons();
         setGameInfo("X's Turn");
+
+        xTurn = true;
+        gameWon = false;
+        turnsPlayed = 0;
     }
 
+    // TODO - Javadoc, disable buttons
     /**
      * Accepts three String arguments and checks those values are not null. If and only if
-     * all String values are not empty, then each value will be compared for equality.
+     * all String values are not empty, then each value will be compared for equality. <p></p>
+     * If all three buttons have the same String value in a winning TicTacToe pattern,
+     * a winner can be determined. Subsequently, alerting the users of the winner and disabling all TicTacToe game buttons.
      *
-     * If all three buttons have the same String value, a winner can be determined. Subsequently, alerting the users
-     * of the winner and disabling all TicTacToe game buttons.
-     *
-     * @param btnOne The String value of the first button.
-     * @param btnTwo The String value of the second button.
+     * @param btnOne   The String value of the first button.
+     * @param btnTwo   The String value of the second button.
      * @param btnThree The String value of the third button.
      */
     public void checkScore(String btnOne, String btnTwo, String btnThree) {
@@ -89,6 +83,7 @@ public class TwoPlayerGame extends GameBoard {
             if (btnOne.equals(btnTwo) && btnThree.equals(btnTwo)) {
                 setGameInfo(btnOne + " WINS");
                 disableButtons();
+                gameWon = true;
             }
         }
     }
@@ -96,24 +91,30 @@ public class TwoPlayerGame extends GameBoard {
     /**
      * Provides the checkScore method with the String values of three buttons, checking for equality.
      * If all three buttons are not null and have the same String value, in a winning TicTacToe pattern, a winner can be
-     * established.
+     * established. If all buttons have been played, and a winning pattern has not been found. A draw cam be established.
      * <p></p>
-     *
-     * If all buttons have been played, and a winning pattern has not been found. A draw cam be established.
-     * <p></p>
-     * 
-     * Uses the checkScore method, significantly reducing repetition: @see {@link #checkScore(String, String, String)}
+     * Calls the checkScore method, significantly reducing repetition and volume of code: @see {@link #checkScore(String, String, String)}
      */
     public void checkForWin() {
         // Horizontal Rows
         checkScore(getTopLeftText(), getTopCentreText(), getTopRightText()); //Top
+        //topRowWin(gameWon);
+
         checkScore(getMiddleLeftText(), getMiddleCentreText(), getMiddleRightText()); //Middle
+        //middleRowWin(gameWon);
+
         checkScore(getBottomLeftText(), getBottomCentreText(), getBottomRightText()); //Bottom
+        //bottomRowWin(gameWon);
 
         // Vertical Rows
         checkScore(getTopLeftText(), getMiddleLeftText(), getBottomLeftText()); //Left
+        //leftColumnWin(gameWon);
+
         checkScore(getTopCentreText(), getMiddleCentreText(), getBottomCentreText()); //Middle
+        //middleColumnWin(gameWon);
+
         checkScore(getTopRightText(), getMiddleRightText(), getBottomRightText()); //Right
+        //rightColumnWin(gameWon);
 
         // Diagonal Rows
         checkScore(getTopLeftText(), getMiddleCentreText(), getBottomRightText()); //Left
@@ -126,19 +127,9 @@ public class TwoPlayerGame extends GameBoard {
         }
     }
 
-//    /**
-//     * @param one
-//     * @param two
-//     * @param three
-//     */
-//    public void highlightGameWinner(Button one, Button two, Button three) {
-//        one.getStyleClass().add("GameWinner");
-//        two.getStyleClass().add("GameWinner");
-//        three.getStyleClass().add("GameWinner");
-//    }
-
 
     // Event Handlers
+
     /**
      * ActionEvent for determining the correct Tic Tac Toe button placement.
      *
@@ -150,15 +141,15 @@ public class TwoPlayerGame extends GameBoard {
 
             if (buttonClicked.getText().equals("")) {
                 if (xTurn) {
-                    setGameInfo("O's Turn");
                     buttonClicked.setText("X");
                     buttonClicked.setFont(new Font("Courier New", 50));
                     xTurn = false;
+                    setGameInfo("O's Turn");
                 } else {
-                    setGameInfo("X's Turn");
                     buttonClicked.setText("O");
                     buttonClicked.setFont(new Font("Courier New", 50));
                     xTurn = true;
+                    setGameInfo("X's Turn");
                 }
                 turnsPlayed++; // Increment the number of turns by + 1 after each turn.
             }

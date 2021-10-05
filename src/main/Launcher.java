@@ -26,7 +26,7 @@ public class Launcher extends Application {
 
         // Event Handler for Game Start
         mainMenu.addPlayGameHandler(e -> {
-            twoPlayerGame.resetButtons();
+            twoPlayerGame.resetGameBoard();
 
             primaryStage.setScene(gameScene);
             primaryStage.getScene().getStylesheets().add("Stylesheet.css");
