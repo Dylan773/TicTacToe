@@ -156,64 +156,6 @@ public class GameBoard extends BorderPane {
         }
     }
 
-    /*
-     * Although there are cleaner implementations to change the button colours. Giving the extending class' direct
-     * access to the game buttons, allowing them to directly change the buttons state is considered bad practice.
-     *
-     * These methods can be called to change the game winning button's colours without providing direct access to
-     * modify there state.
-     */
-    /**
-     * Highlights the three top row buttons green.
-     */
-    public void topRowWin(Boolean gameOver) {
-        if (gameOver) {
-            topLeft.getStyleClass().add("GameWinner");
-            topCentre.getStyleClass().add("GameWinner");
-            topRight.getStyleClass().add("GameWinner");
-        }
-    }
-
-    public void middleRowWin(Boolean gameOver) {
-        if (gameOver) {
-            middleLeft.getStyleClass().add("GameWinner");
-            middleCentre.getStyleClass().add("GameWinner");
-            middleRight.getStyleClass().add("GameWinner");
-        }
-    }
-
-    public void bottomRowWin(Boolean gameOver) {
-        if (gameOver) {
-            bottomLeft.getStyleClass().add("GameWinner");
-            bottomCentre.getStyleClass().add("GameWinner");
-            bottomRight.getStyleClass().add("GameWinner");
-        }
-    }
-
-    public void leftColumnWin(Boolean gameOver) {
-        if (gameOver) {
-            topLeft.getStyleClass().add("GameWinner");
-            middleLeft.getStyleClass().add("GameWinner");
-            middleRight.getStyleClass().add("GameWinner");
-        }
-    }
-
-    public void middleColumnWin(Boolean gameOver) {
-        if (gameOver) {
-            topLeft.getStyleClass().add("GameWinner");
-            topCentre.getStyleClass().add("GameWinner");
-            topRight.getStyleClass().add("GameWinner");
-        }
-    }
-
-    public void rightColumnWin(Boolean gameOver) {
-        if (gameOver) {
-            topLeft.getStyleClass().add("GameWinner");
-            topCentre.getStyleClass().add("GameWinner");
-            topRight.getStyleClass().add("GameWinner");
-        }
-    }
-
     /**
      * Method that updates the Labels text displayed at the top of the game screen BorderPane.
      *
