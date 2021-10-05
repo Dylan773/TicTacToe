@@ -13,7 +13,6 @@ public class TwoPlayerGame extends GameBoard {
     private int turnsPlayed;
 
     // Constructor
-
     /**
      * Sets x's Turn to true, assigning the first move to player X.
      * Attaches all button handlers to this class.
@@ -28,7 +27,6 @@ public class TwoPlayerGame extends GameBoard {
 
 
     // Methods
-
     /**
      * Attaches all GameBoard's external button handlers to this class' button ActionEvent.
      */
@@ -143,15 +141,15 @@ public class TwoPlayerGame extends GameBoard {
 
             if (buttonClicked.getText().equals("")) {
                 if (xTurn) {
-                    setGameInfo("O's Turn");
                     buttonClicked.setText("X");
                     buttonClicked.setFont(new Font("Courier New", 50));
                     xTurn = false;
+                    setGameInfo("O's Turn");
                 } else {
-                    setGameInfo("X's Turn");
                     buttonClicked.setText("O");
                     buttonClicked.setFont(new Font("Courier New", 50));
                     xTurn = true;
+                    setGameInfo("X's Turn");
                 }
                 turnsPlayed++; // Increment the number of turns by + 1 after each turn.
             }

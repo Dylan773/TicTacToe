@@ -18,8 +18,6 @@ import javafx.scene.text.Font;
  */
 public class MainMenu extends BorderPane {
 
-    // Fields
-    private Label title, credits;
     private Button playGame, gameInfo, exitGame;
 
     // Constructor
@@ -37,7 +35,7 @@ public class MainMenu extends BorderPane {
         this.getStyleClass().add("MainMenu");
 
         // Credit Label
-        credits = new Label("Created by Dylan Brand, Student at De Montfort University.");
+        Label credits = new Label("Created by Dylan Brand, Student at De Montfort University.");
 
         // Centralised HBox for credits
         HBox creditHBox = new HBox(credits);
@@ -63,7 +61,8 @@ public class MainMenu extends BorderPane {
         gridPane.setVgap(10);
 
         // Game Title
-        title = new Label("TicTacToe");
+        // Fields
+        Label title = new Label("TicTacToe");
         title.setFont(new Font("Courier New", 70));
 
         // Play Game Button - Has an external event handler

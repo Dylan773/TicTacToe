@@ -116,7 +116,7 @@ public class GameBoard extends BorderPane {
     /**
      * Disables all Tic Tac Toe game buttons on the GameBoard. <p></p>
      *
-     * Calls getAllButtons from the inherited class and uses this method to iterate through all TicTacToe game buttons. @see {@link #getAllButtons()}
+     * Calls getAllButtons method from this class to iterate through all TicTacToe game buttons. @see {@link #getAllButtons()}
      */
     public void disableButtons() {
         for (Button button : getAllButtons())
